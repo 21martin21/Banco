@@ -45,6 +45,7 @@ public abstract class Movimiento {
     }
 
     public Date getFecha() {
+        //mierda
         return fecha;
     }
 

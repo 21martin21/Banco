@@ -17,6 +17,7 @@ public class Cuenta {
     private float saldo = 0;
     private float tipoInteres;
     private ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
+    private boolean isBloqued = false;
 
     /**
      * Si se ha podido realizar el ingreso, retorna true
@@ -25,7 +26,7 @@ public class Cuenta {
      * @return
      */
     private boolean Ingreso(float importe) {
-        if (importe < 0) {
+        if (importe < 0 ) {
             return false;
         }
 
@@ -55,6 +56,9 @@ public class Cuenta {
 
     public boolean doMovement(Movimiento mov) {
         /*decida que hay que hacer */
+        if(isBloqued){
+            return false;
+        }
         if (mov.getTipo().equals("recargo")) {
             if (this.Recargo(mov.getImporte())) {
                 this.registerMovement(mov);

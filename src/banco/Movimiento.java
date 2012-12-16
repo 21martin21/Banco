@@ -45,7 +45,7 @@ public abstract class Movimiento {
     }
 
     public Date getFecha() {
-        //mierda
+        //no pongas mierda en mi codigo
         return fecha;
     }
 

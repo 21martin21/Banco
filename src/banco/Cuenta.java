@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Mafs
  */
 public class Cuenta {
-
+    
     private String nombre;
     private String cuenta;
     private float saldo = 0;
@@ -74,7 +74,7 @@ public class Cuenta {
         }
 
         if (mov.getTipo().equals("transferencia")) {
-            if (this.Transferencia(mov.getDestino(), mov.getImporte())) {
+            if (this.Transferencia(mov.getDestino(), mov.getImporte())) {           
                 this.registerMovement(mov);
                 return true;
             }
@@ -116,11 +116,14 @@ public class Cuenta {
     }
 
     private boolean Transferencia(Cuenta cuentaReceptora, float importe) {
-
-        if (this.Recargo(importe)) {
+        float interes = importe*this.tipoInteres/100;
+        if (this.Recargo(importe+interes)) {
             if (cuentaReceptora.Ingreso(importe)) {
+               this.registerMovement(new Recargo("Intereses transferencia "+this.tipoInteres+"% "+importe, interes));
+               Banco.BancoCuenta.doMovement(new Ingreso("Transferencia de: "+ this.cuenta+ " a "+ cuentaReceptora.cuenta, interes));
                 return true;
             }
+            //si no se hace la transferencia, me devuelve el saldo.
             this.saldo += importe;
         }
 
@@ -129,7 +132,7 @@ public class Cuenta {
 
     @Override
     public String toString() {
-        String result = "\n- Cuenta: " + this.cuenta + ", Cliente: " + this.nombre + ", Saldo: " + this.saldo;
+        String result = "\n\n- Cuenta: " + this.cuenta + ", Cliente: " + this.nombre + ", Saldo: " + this.saldo;
         result += "\n MOVIMIENTOS: \n" + this.movimientos.toString();
         return result;
     }

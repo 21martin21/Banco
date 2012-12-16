@@ -10,6 +10,8 @@ package banco;
  */
 public class Banco {
 
+    public static Cuenta BancoCuenta = Actions.create("0", "Banco MJ", 0);
+    
     /**
      * Esta clase se encarga de gestionar la entrada y salida del sistema
      * @param args the command line arguments

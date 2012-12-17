@@ -61,7 +61,7 @@ public class Navigation {
             System.out.println(Actions.search(cuenta));
         }
         
-        return opcion != opciones.length;
+        return opcion != opciones.length-1;
     }
     
     public boolean subMenu(){
@@ -72,7 +72,22 @@ public class Navigation {
             System.out.print(seleccionada);
         }
         
-        return opcion != opciones.length;
+        if(opcion == 1){
+            System.out.println("Introduzca el Concepto: ");
+            String concepto = teclado.next();
+            System.out.println("Introduzca el importe: ");
+            float importe = teclado.nextFloat();
+            
+            Movimiento mov = new Ingreso(concepto, importe);
+            if(seleccionada.doMovement(mov)){
+                System.out.println("Se ha realizado correctamente");
+            }else{
+                System.out.println("No se ha podido realizar la operación");
+            }
+            
+        }
+        
+        return opcion != opciones.length-1;
     }
     
     

@@ -132,7 +132,7 @@ public class Cuenta {
 
     @Override
     public String toString() {
-        String result = "\n\n- Cuenta: " + this.cuenta + ", Cliente: " + this.nombre + ", Saldo: " + this.saldo;
+        String result = "\n- Cuenta: " + this.cuenta + ", Cliente: " + this.nombre + ", Saldo: " + this.saldo+"\n";
        // result += "\n MOVIMIENTOS: \n" + this.movimientos.toString();
         return result;
     }
